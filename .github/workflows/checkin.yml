@@ -1,6 +1,7 @@
 name: Juejin Auto Checkin
 
 on:
+  push:
   schedule:
     - cron: '30 0 * * *'  # 每天 UTC 00:30 = 北京时间 08:30
   workflow_dispatch:
