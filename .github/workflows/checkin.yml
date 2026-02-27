@@ -1,0 +1,26 @@
+name: Juejin Auto Checkin
+
+on:
+  schedule:
+    - cron: '30 0 * * *'  # 每天 UTC 00:30 = 北京时间 08:30
+  workflow_dispatch:
+
+jobs:
+  checkin:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Checkin
+        run: node checkin.js
+        env:
+          JUEJIN_COOKIE: ${{ secrets.JUEJIN_COOKIE }}
